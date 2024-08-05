@@ -1,0 +1,24 @@
+.product{
+    height:200px;
+    /* width:150px; */
+    border:2px solid black;
+    display:inline-block;
+    box-sizing: border-box;
+}
+.myrow1{
+    /* height: 70px; */
+    border: solid black 2px;
+}
+
+.myrow2{
+    border: solid black 2px;
+}
+
+.myrow3{
+    /* height: 80px; */
+    border: solid black 2px;
+}
+
+.box{
+    border: solid black 2px;
+}

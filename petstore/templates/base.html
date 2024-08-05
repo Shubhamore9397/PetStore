@@ -1,0 +1,16 @@
+<!-- code till end of row1 -->
+{% include 'header.html'%}
+<!-- row2 -->
+<div class="myrow2 row mt-2">
+    <!-- row2 col1 -->
+     {% include 'sidebar.html'%}
+     <!-- row2 col2 -->
+      <div class="box col-10">
+        <!-- page specific content -->
+         {% block 'main' %}
+         {% endblock 'main' %}
+      </div>
+
+</div>
+<!-- from row3 upto end of html -->
+{% include 'footer.html'%}

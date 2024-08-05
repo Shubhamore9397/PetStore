@@ -1,0 +1,142 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pet Store</title>
+    <link rel="stylesheet" href="{% static 'css/mystyle.css' %}">
+    <!-- <link rel="stylesheet" href="../static/css/bootstrap.min.css"> -->
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}"> 
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
+</head>
+
+<body>
+    <!-- <h1>Home Page</h1> -->
+    <div class="container-fluid">
+        <div class="myrow1 row">
+            <nav class="navbar navbar-expand-lg bg-primary" data-bs-theme="dark">
+                <div class="container-fluid">
+                    <!-- <a class="navbar-brand" href="#">Navbar</a> -->
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                            <li class="nav-item">
+                                <a class="nav-link active" aria-current="page" href="#">Navbar</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="home.html">Home</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="login.html">Login</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="register.html">Register</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="aboutus.html">Aboutus</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="contact_us.html">Contactus</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="details.html">Details</a>
+                            </li>
+                            <!-- <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                          Dropdown
+                        </a>
+                        <ul class="dropdown-menu">
+                          <li><a class="dropdown-item" href="#">Action</a></li>
+                          <li><a class="dropdown-item" href="#">Another action</a></li>
+                          <li><hr class="dropdown-divider"></li>
+                          <li><a class="dropdown-item" href="#">Something else here</a></li>
+                        </ul>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Contact us</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">About me</a>
+                        </li>
+                      </li> 
+                    </ul>-->
+                            <!-- <form class="d-flex" role="search">
+                      <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                      <button class="btn btn-warning" type="submit">Search</button>
+                    </form> -->
+                    </div>
+                </div>
+            </nav>
+        </div>
+        <div class="myrow2 row ">
+            <div class="box col-2 mt-2 bg-light">
+                <a href="">All Products</a><br>
+                <h5 class="mt-2">Filter By Category</h5>
+                <hr>
+                <a href="">Mobile</a><br>
+                <a href="">Clothing</a><br>
+                <a href="">Accessory</a><br>
+                <h5 class="mt-2">Filter By Price</h5>
+                <hr>
+                <form action="">
+                    <div class="col-auto">
+                        <label class="col-form-label">Min:</label>
+                        <input type="text" class="form-control" name="min">
+                        <label class="col-form-label">Max:</label>
+                        <input type="text" class="form-control" name="max">
+                        <input type="submit" value="Search" class=" btn btn-primary mt-2">
+                    </div>
+                </form>
+                <h5 class="mt-2">Sort By Price</h5>
+                <hr>
+                <a href="">Low to High</a><br>
+                <a href="">High to Low</a><br>
+            </div>
+            <div class="box col-10">
+                <div class="row mx-auto">
+                    <!-- Product1 -->
+                    <div class="card" style="width: 18rem;">
+                        <br>
+                        <br>
+                        <img src="{% static 'images/download.jpeg' %}" class="card-img-top"
+                            alt="...">
+                        <div class="card-body">
+                            <h5 class="card-title">Sig Sauer P320 M18</h5><br>
+                            <p class="card-text">The SIG Sauer P320 is a modular semi-automatic pistol made by SIG
+                                Sauer, Inc. It is a further development of the SIG Sauer P250. The P320 can be chambered
+                                in 9×19mm Parabellum</p>
+                            <strong>Rs 40000</strong>
+                            <br>
+                            <a href="#" class="btn btn-primary">View Details</a>
+                            <a href="#" class="btn btn-primary">Add to cart</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="myrow3 row">
+            <div class="box col-4">
+                <i class="bi bi-geo-alt-fill" style="font-size: 20px;"></i> Addresss:2nd floor, Ishan Arcade, 1, Gokhale
+                Rd, opposite Gaondevi Mandir, above Canara Bank, Shivaji Path, Dada Patil Wadi, Naupada, Thane West,
+                Thane, Maharashtra 400602
+            </div>
+            <div class="box col-4"> Contact Us:<br>
+                <i class="bi bi-phone" font-size: 20px;></i>&nbsp;&nbsp;:9594570090<br>
+                <i class="bi bi-envelope" font-size: 20px;></i>&nbsp;&nbsp;:Shubhamrane016@gmail.com
+            </div>
+            <div class="box col-4"> Social Media Handles: <i class="bi bi-facebook"
+                    style="font-size: 20px;"></i>&nbsp;&nbsp; <i class="bi bi-whatsapp"
+                    style="font-size: 20px;"></i>&nbsp;&nbsp; <i class="bi bi-twitter"
+                    style="font-size: 20px;"></i>&nbsp;&nbsp; <i class="bi bi-linkedin" style="font-size: 20px;"></i>
+            </div>
+        </div>
+    </div>
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+</body>
+
+</html>
