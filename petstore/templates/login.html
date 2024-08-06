@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+ {% load static %}
+
+ {% block 'main' %}
+<div align="center" class="container">
+    
+    <form action="" method="post">
+        {% csrf_token %}
+        <h2>Login</h2>
+        {% for message in messages %}
+        {% if message.level == DEFAULT_MESSAGE_LEVELS.SUCCESS %}
+        <div class="alert alert-success">
+            {{ message }}
+        </div>
+        {% endif %}
+        
+        {% endfor%}
+        
+        <label for="username">Username</label>
+        <input type="text" id="username" name="username"><br><br>
+        <label for="password">Password</label>
+        <input type="password" id="password" name="password"><br><br>
+      
+        <button type="submit">Login</button>
+    </form>
+</div>
+{% endblock 'main' %}

@@ -22,6 +22,7 @@ from petapp import views
 urlpatterns = [
     path('', views.home),
     path('details/<rid>', views.showPetDetails),
-    path('register', views.registerUser)
+    path('register', views.registerUser),
+     path('login', views.userLogin),
     
 ]

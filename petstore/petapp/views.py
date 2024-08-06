@@ -1,6 +1,8 @@
 from django.shortcuts import render,redirect
 from petapp.models import Pet
 from django.contrib.auth.models import User
+from django.contrib import messages
+from django.contrib.auth import authenticate,login,logout
 
 # Create your views here.
 def home(request):
@@ -35,9 +37,28 @@ def registerUser(request):
             return render(request, 'register.html',context)
         else:
             u = User.objects.create(username=u, email=e)
-            u.set_password(p)
+            u.set_password(p) # for password encription
             u.save()
+            messages.success(request,'Registered successfully, Please login')
+            return redirect('/login')
+        
+def userLogin(request):
+    if request.method == 'GET':
+        return render(request,'login.html')
+    else:
+        # login activity
+        u= request.POST['username']
+        p= request.POST['password']
+        auth= authenticate(username=u, password=p)
+        print(u)
+        if auth == None:
+            context={'error':'Please provide correct details to login'}
+            return render(request,'login.html',context)
+        else:
+            login(request,auth)
             return redirect('/')
+            
+        
      
         
         
