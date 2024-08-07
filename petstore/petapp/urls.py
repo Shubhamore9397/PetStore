@@ -23,6 +23,8 @@ urlpatterns = [
     path('', views.home),
     path('details/<rid>', views.showPetDetails),
     path('register', views.registerUser),
-     path('login', views.userLogin),
+    path('login', views.userLogin),
+    path('/login', views.userLogout), 
+    path('addtocart/<petid>', views.addtocart),
     
 ]

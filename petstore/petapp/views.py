@@ -1,5 +1,5 @@
 from django.shortcuts import render,redirect
-from petapp.models import Pet
+from petapp.models import Pet,Cart
 from django.contrib.auth.models import User
 from django.contrib import messages
 from django.contrib.auth import authenticate,login,logout
@@ -57,6 +57,27 @@ def userLogin(request):
         else:
             login(request,auth)
             return redirect('/')
+        
+def userLogout(request):
+    logout(request)
+    messages.success(request,'User logged out successfully')
+    return redirect('/')
+
+def addtocart(request,petid):
+    userid = request.user.id
+    context={}
+    if userid is None:
+        context['error']='Please login so as to add the Pet in your cart'
+        return render(request,'login.html',context)
+    else:
+        # cart will be added if pet and user object is known
+        users = User.objects.filter(id=userid)
+        pets = Pet.objects.filter(id=petid)
+        cart = Cart.objects.create(pid=pets[0], uid=users[0])
+
+        cart.save()
+        messages.success(request,'Pet added to cart')
+        return redirect('/')
             
         
      
