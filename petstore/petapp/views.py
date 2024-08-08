@@ -25,6 +25,9 @@ def registerUser(request):
         return render(request, 'register.html')
     else:
         u = request.POST['username']
+        if User.objects.get(username=u) is not None:
+            context={'error':'Username already registered. Please enter a different usernamefor registration'}
+            return render(request,'register.html',context)
         e = request.POST['email']
         p = request.POST['password']
         cp = request.POST['confirmpassword']
@@ -50,7 +53,7 @@ def userLogin(request):
         u= request.POST['username']
         p= request.POST['password']
         auth= authenticate(username=u, password=p)
-        print(u)
+        print('loggrd in user',auth)
         if auth == None:
             context={'error':'Please provide correct details to login'}
             return render(request,'login.html',context)
@@ -71,13 +74,33 @@ def addtocart(request,petid):
         return render(request,'login.html',context)
     else:
         # cart will be added if pet and user object is known
-        users = User.objects.filter(id=userid)
-        pets = Pet.objects.filter(id=petid)
-        cart = Cart.objects.create(pid=pets[0], uid=users[0])
+        user = User.objects.filter(id=userid)
+        pet = Pet.objects.filter(id=petid)
+        cart = Cart.objects.create(uid=user, pid=pet)
 
         cart.save()
-        messages.success(request,'Pet added to cart')
+        messages.success(request,'Pet added to cart successfully')
         return redirect('/')
+    
+def showUserCart(request):
+    user=request.user
+    cart= Cart.objects.filter(uid=user.id)
+    totalBill=0
+    for c in cart:
+        totalBill += c.pid.price * c.quantity
+    count= len(cart)
+    context={}
+    context['cart']=cart
+    context['total']=totalBill
+    context['count']=count
+    return render(request,'showcart.html',context) 
+
+def removeCart(request,cartid):
+    cart= Cart.objects.filter(id=cartid)
+    cart.delete()
+    messages.success(request,'Pet removed from your cart')
+    return redirect('/showcart')
+                
             
         
      

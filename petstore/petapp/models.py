@@ -16,3 +16,6 @@ class Cart(models.Model):
     pid= models.ForeignKey(Pet, on_delete=models.CASCADE, db_column='pid')
     uid= models.ForeignKey(User, on_delete=models.CASCADE, db_column='uid')
     quantity= models.IntegerField(default=1)
+    
+    def __str__(self):
+        return str(self.id)

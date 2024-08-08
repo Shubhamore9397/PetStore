@@ -24,7 +24,8 @@ urlpatterns = [
     path('details/<rid>', views.showPetDetails),
     path('register', views.registerUser),
     path('login', views.userLogin),
-    path('/login', views.userLogout), 
+    path('logout', views.userLogout), 
     path('addtocart/<petid>', views.addtocart),
-    
+    path('showcart', views.showUserCart),
+     path('removepet/<cartid>', views.removeCart),
 ]
