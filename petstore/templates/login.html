@@ -14,8 +14,12 @@
             {{ message }}
         </div>
         {% endif %}
-        
         {% endfor%}
+        {% if error %}
+         <div class="alert alert-danger">
+            {{ error }}
+        </div>
+        {% endif %}
         
         <label for="username">Username</label>
         <input type="text" id="username" name="username"><br><br>

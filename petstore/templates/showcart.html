@@ -20,9 +20,13 @@
             <div class="col-6">
                 <h3>{{ pet.pid.name}}</h3>
                 <strong>{{ pet.pid.breed}} {{ pet.pid.type}}</strong><br>
-                <strong>{{ pet.pid.price}}</strong><br> Quantity: <a class="btn btn-warning">-</a>
+                <strong>{{ pet.pid.price}}</strong><br> 
+                 Quantity:
+                 {{% if pet.quantity>1 %}} 
+                 <a href="/updatecart/0/{{pet.id}}"class="btn btn-warning">-</a>
+                 {{ endif }}
                 <strong>{{pet.quantity}}</strong>
-                <a class="btn btn-warning">+</a>
+                <a href="/updatecart/1/{{pet.id}}"class="btn btn-warning">+</a>
                 <a href="/removepet/{{pet.id}}" class="btn btn-primary mt-2">Remove</a>
             </div>
         </div>

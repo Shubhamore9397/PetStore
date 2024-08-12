@@ -11,6 +11,7 @@ class Pet(models.Model):
     age = models.IntegerField()
     price = models.IntegerField()
     description = models.CharField(max_length=100)
+    petimage = models.ImageField(upload_to='media', default=0)
     
 class Cart(models.Model):
     pid= models.ForeignKey(Pet, on_delete=models.CASCADE, db_column='pid')

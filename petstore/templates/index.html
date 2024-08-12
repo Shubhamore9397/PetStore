@@ -6,7 +6,7 @@
     <!-- Product1 -->
      {% for pet in pets %}
     <div class="card col-md-3 m-2" style="width: 18rem;">
-    <img src="" class="card-img-top" alt="image not available">
+    <img src="{{pet.petimage.url}}" class="card-img-top" alt="image not available">
         <div class="card-body">
             <h5 class="card-title">{{ pet.name }}</h5>
             <h5 class="card-title">{{ pet.breed }} {{ pet.type }}</h5><br>

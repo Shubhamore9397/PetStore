@@ -53,7 +53,7 @@ def userLogin(request):
         u= request.POST['username']
         p= request.POST['password']
         auth= authenticate(username=u, password=p)
-        print('loggrd in user',auth)
+        print('logged in user',auth)
         if auth == None:
             context={'error':'Please provide correct details to login'}
             return render(request,'login.html',context)
@@ -100,6 +100,14 @@ def removeCart(request,cartid):
     cart.delete()
     messages.success(request,'Pet removed from your cart')
     return redirect('/showcart')
+
+def updateCart(request,opr,cartid):
+    cart=Cart.objects.filter(id=cartid) #returns mutiple number of query sets
+    if opr == '1':
+        cart.update(quantity = cart[0].quantity+1)
+    else:
+        cart.update(quantity = cart[0].quantity-1)
+        return redirect('/showcart')
                 
             
         
