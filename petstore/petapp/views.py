@@ -3,6 +3,7 @@ from petapp.models import Pet,Cart
 from django.contrib.auth.models import User
 from django.contrib import messages
 from django.contrib.auth import authenticate,login,logout
+from django.db.models import Q #used at searchByRange function for applying filteration of price ranges
 
 # Create your views here.
 def home(request):
@@ -108,9 +109,45 @@ def updateCart(request,opr,cartid):
     else:
         cart.update(quantity = cart[0].quantity-1)
         return redirect('/showcart')
-                
-            
-        
-     
+    
+def searchByType(request,pet_type):
+    petlist =  Pet.objects.filter(type = pet_type)
+    context={'pets':petlist}
+    return render(request,'index.html',context)
+
+def searchByRange(request):
+    #range?min=24000&max=28000/
+    min= request.GET['min']
+    max= request.GET['min']
+    c1= Q(price__get = min)            
+    c2= Q(price__get = max)        
+    petList= Pet.objects.filter(c1 & c2)
+    context= {'pets': petList}
+    return render(request,'index.html',context)    
+
+def sortByPrice(request,dir):
+    col=''
+    if dir == 'asc':
+        col='price'
+    else: #dir='desc':
+        col='-price'
+    petList= Pet.objects.all().order_by(col)
+    context= {'pets': petList}
+    return render(request,'index.html',context) 
+    
+def confirmOrder(request):
+    user=request.user
+    cart= Cart.objects.filter(uid=user.id)
+    totalBill=0
+    for c in cart:
+        totalBill += c.pid.price * c.quantity
+    count= len(cart)
+    context={}
+    context['cart']=cart
+    context['total']=totalBill
+    context['count']=count
+    return render(request,'confirmorder.html',context) 
+   
+  
         
         

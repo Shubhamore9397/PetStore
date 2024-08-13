@@ -3,6 +3,14 @@
 
 {% block 'main' %}
 <div class="row mx-auto">
+    {% for message in messages %}  
+       {% if message.level == DEFAULT_MESSAGE_LEVELS.SUCCESS  %}  
+            <div class="alert alert-success">
+               {{ message }}
+            </div>
+        {% endif %}
+    {% endfor %}
+
     <!-- Product1 -->
      {% for pet in pets %}
     <div class="card col-md-3 m-2" style="width: 18rem;">

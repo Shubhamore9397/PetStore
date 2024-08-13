@@ -1,0 +1,32 @@
+Sorting:
+========
+select * from petapp_pet order by price;
+select * from petapp_pet order by price desc ;
+
+ORM :
+
+
+
+
+Applying Multiple conditions:
+===============================
+min price = 24000
+max price = 28000
+
+select * from petapp_pet 
+where 
+price >= 24000 
+and
+price <= 28000;
+
+from django.db.models import Q
+
+simple examples:
+price > 5000  ----> price__gt = 5000
+price >= 5000 ----> price__gte = 5000
+price < 5000  -----> price__lt = 5000
+price <= 5000 -----> price__lte = 5000
+
+c1 = Q(price__gte = 24000)
+c2 = Q(price__lte = 28000)
+petList= Pet.objects.filter(c1 & c2)

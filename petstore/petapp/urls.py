@@ -30,7 +30,11 @@ urlpatterns = [
     path('addtocart/<petid>', views.addtocart),
     path('showcart', views.showUserCart),
     path('removepet/<cartid>', views.removeCart),
-    path('updatecart/<opr>/<cartid>',views.updateCart) 
+    path('updatecart/<opr>/<cartid>',views.updateCart) ,
+    path('search/<pet_type>', views.searchByType),
+    path('range',views.searchByRange),
+    path('sort/<dir>',views.sortByPrice),
+    path('confirmorder',views.confirmOrder)
 ]
 
 urlpatterns += static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)
