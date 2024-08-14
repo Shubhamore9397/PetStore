@@ -15,7 +15,7 @@
         {% for pet in cart %}
         <div class="row m-2">
             <div class="col-6">
-                <img src="../static/images/download.jpg" alt="" width="100%" height="150px">
+                <img src="{{pet.petimage.url}}" alt="" width="100%" height="150px">
             </div>
             <div class="col-6">
                 <h3>{{ pet.pid.name}}</h3>
@@ -36,8 +36,8 @@
         <h3 class="bg-warning">Summary</h3>
         <h4>Items Count: 3</h4>
         <h4>Total Amount: Rs.60000</h4><br>
-        <a class="btn btn-warning" href="placeorder.html">Confirm Order</a>
-        <a class="btn btn-warning" href="index.html">Shop more</a>
+        <a class="btn btn-warning" href="/confirmorder">Confirm Order</a>
+        <a class="btn btn-warning" href="/">Shop more</a>
     </div>
 </div>
 
