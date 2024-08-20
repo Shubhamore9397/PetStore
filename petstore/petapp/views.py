@@ -1,10 +1,11 @@
 from django.shortcuts import render,redirect
-from petapp.models import Pet,Cart
+from petapp.models import Pet,Cart,Order
 from django.contrib.auth.models import User
 from django.contrib import messages
 from django.contrib.auth import authenticate,login,logout
 from django.db.models import Q #used at searchByRange function for applying filteration of price ranges
 import razorpay
+import random
 
 # Create your views here.
 def home(request):
@@ -28,7 +29,7 @@ def registerUser(request):
     else:
         u = request.POST['username']
         if User.objects.get(username=u) is not None:
-            context={'error':'Username already registered. Please enter a different usernamefor registration'}
+            context={'error':'Username already registered. Please enter a different username for registration'}
             return render(request,'register.html',context)
         e = request.POST['email']
         p = request.POST['password']
@@ -164,7 +165,15 @@ def makepayment(request):
         
 def placeOrder(request):
     # 1. place order (insert order details in order table)
+    user= request.user
+    mycart= Cart.objects.filter(uid=user.id)
+    oId= random.randrange(10000,99999)
+    # verify if its not existing in db
+    for cart in mycart:
+        order= Order.objects.create(orderId=oId, uid=cart.id, pid=cart.pid, quantity=cart.quantity)
+        order.save()
     # 2. clear Cart
+    mycart.delete()
     # 3. sending gmail
     return redirect('/')
    
