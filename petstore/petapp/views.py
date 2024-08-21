@@ -6,6 +6,7 @@ from django.contrib.auth import authenticate,login,logout
 from django.db.models import Q #used at searchByRange function for applying filteration of price ranges
 import razorpay
 import random
+from django.core.mail import send_mail
 
 # Create your views here.
 def home(request):
@@ -28,14 +29,15 @@ def registerUser(request):
         return render(request, 'register.html')
     else:
         u = request.POST['username']
-        if User.objects.get(username=u) is not None:
-            context={'error':'Username already registered. Please enter a different username for registration'}
-            return render(request,'register.html',context)
+        # if User.objects.get(username=u) is not None:
+        #     context={'error':'Username already registered. Please enter a different username for registration'}
+        #     return render(request,'register.html',context)  commented due error while registration
+       
         e = request.POST['email']
         p = request.POST['password']
         cp = request.POST['confirmpassword']
         # form validation
-        if u=='' or e=='' or p=='':
+        if u=='' or e=='' or p==''
             context={'error':'All fields are compulsory'}
             return render(request, 'register.html',context)
         elif p!=cp:
@@ -48,7 +50,7 @@ def registerUser(request):
             messages.success(request,'Registered successfully, Please login')
             return redirect('/login')
         
-def userLogin(request):
+def userLogin(request): 
     if request.method == 'GET':
         return render(request,'login.html')
     else:
@@ -174,9 +176,22 @@ def placeOrder(request):
         order.save()
     # 2. clear Cart
     mycart.delete()
+    
     # 3. sending gmail
+    msg_body= 'oder id is:'+str(oId)
+    custEmail= request.user.email
+    send_mail(
+    "Order placed successfully", #subject
+    msg_body,
+    "shubhamore9397@gmail.com", #from 
+    [custEmail],
+    fail_silently= False    
+    )
+    messages.success(request,'Order placed successfully')
     return redirect('/')
+    
    
+
 
     
    
