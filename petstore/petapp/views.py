@@ -37,7 +37,7 @@ def registerUser(request):
         p = request.POST['password']
         cp = request.POST['confirmpassword']
         # form validation
-        if u=='' or e=='' or p==''
+        if u=='' or e=='' or p=='':
             context={'error':'All fields are compulsory'}
             return render(request, 'register.html',context)
         elif p!=cp:
@@ -79,8 +79,8 @@ def addtocart(request,petid):
         return render(request,'login.html',context)
     else:
         # cart will be added if pet and user object is known
-        user = User.objects.filter(id=userid)
-        pet = Pet.objects.filter(id=petid)
+        user = User.objects.get(id=userid)
+        pet = Pet.objects.get(id=petid)
         cart = Cart.objects.create(uid=user, pid=pet)
 
         cart.save()
